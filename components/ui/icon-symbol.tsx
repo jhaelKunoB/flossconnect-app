@@ -1,41 +1,61 @@
-// Fallback for using MaterialIcons on Android and web.
+import React from "react";
+import { StyleProp, ViewStyle } from "react-native";
+import { Lineicons } from "@lineiconshq/react-native-lineicons";
+import {
+  Home2Outlined,
+  CalendarDaysOutlined,
+  User4Outlined,
+  Island2Outlined,
+  ChevronLeftOutlined,
+  Code1Outlined,
+  ClipboardOutlined,
+} from "@lineiconshq/free-icons";
 
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { SymbolWeight, SymbolViewProps } from 'expo-symbols';
-import { ComponentProps } from 'react';
-import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
+export type IconSymbolName =
+  | "house.fill"
+  | "calendar"
+  | "person"
+  | "paperplane.fill"
+  | "chevron.right"
+  | "chevron.left.forwardslash.chevron.right"
+  | "treatment"
+  | "appointment.new";
 
-type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
-type IconSymbolName = keyof typeof MAPPING;
+const ICON_MAP: Record<IconSymbolName, any> = {
+  "house.fill": Home2Outlined,
+  "calendar": CalendarDaysOutlined,
+  "person": User4Outlined,
+  "paperplane.fill": Island2Outlined,
+  "chevron.right": ChevronLeftOutlined,
+  "chevron.left.forwardslash.chevron.right": Code1Outlined,
+  'treatment': ClipboardOutlined,
+  'appointment.new': CalendarDaysOutlined
+};
 
-/**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
- */
-const MAPPING = {
-  'house.fill': 'home',
-  'paperplane.fill': 'send',
-  'chevron.left.forwardslash.chevron.right': 'code',
-  'chevron.right': 'chevron-right',
-} as IconMapping;
+type Props = {
+  name: IconSymbolName;
+  size?: number;
+  color?: string;
+  strokeWidth?: number;
+  style?: StyleProp<ViewStyle>;
+};
 
-/**
- * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
- * This ensures a consistent look across platforms, and optimal resource usage.
- * Icon `name`s are based on SF Symbols and require manual mapping to Material Icons.
- */
 export function IconSymbol({
   name,
   size = 24,
-  color,
+  color = "#222",
+  strokeWidth = 2,
   style,
-}: {
-  name: IconSymbolName;
-  size?: number;
-  color: string | OpaqueColorValue;
-  style?: StyleProp<TextStyle>;
-  weight?: SymbolWeight;
-}) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+}: Props) {
+  const icon = ICON_MAP[name] ?? Home2Outlined; // fallback seguro
+
+  return (
+    <Lineicons
+      icon={icon}
+      size={size}
+      color={color}
+      strokeWidth={strokeWidth}
+      style={style}
+    />
+  );
 }

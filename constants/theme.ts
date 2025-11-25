@@ -8,24 +8,51 @@ import { Platform } from 'react-native';
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
+// tokens/base.ts
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    text: "#34444b",
+    background: "#ffffffff",
+    secodbackground: "#1F2937",
+    tint: "#516067",
+    icon: "#707f86",
+    tabIconDefault: "#aab7bc",
+    tabIconSelected: "#516067",
+    card: "#ffffff",
+    foreground50: "#e6f0f5",
+    foreground100: "#c7d3d9",
+    foreground200: "#aab7bc",
+    foreground300: "#8d9ba1",
+    foreground400: "#707f86",
+    foreground500: "#516067",
+    background600: "#34444b",
+    background700: "#1d2e35",
+    background800: "#081921",
+    background900: "#00080f",
+    background950: "#000102",
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    text: "#e6f0f5",
+    background: "#34444b",
+    tint: "#aab7bc",
+    icon: "#8d9ba1",
+    tabIconDefault: "#707f86",
+    tabIconSelected: "#e6f0f5",
+    card: "#1d2e35",
+    foreground50: "#e6f0f5",
+    foreground100: "#c7d3d9",
+    foreground200: "#aab7bc",
+    foreground300: "#8d9ba1",
+    foreground400: "#707f86",
+    foreground500: "#516067",
+    background600: "#34444b",
+    background700: "#1d2e35",
+    background800: "#081921",
+    background900: "#00080f",
+    background950: "#000102",
   },
 };
+
 
 export const Fonts = Platform.select({
   ios: {
