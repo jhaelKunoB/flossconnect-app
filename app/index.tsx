@@ -1,20 +1,19 @@
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter, Redirect } from "expo-router";
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ImageBackground, ActivityIndicator } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
-import { BlurView } from 'expo-blur';
-
+import { usePatientAuth } from "@/hooks/useAuth";
+import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
+import { Redirect, useRouter } from "expo-router";
+import { ActivityIndicator, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const { width } = Dimensions.get("window");
 
 const PresentationScreen = () => {
   const router = useRouter();
-  
-  const { initializing, isLoggedIn } = useAuth();
+
+  const { initializing, isLoggedIn } = usePatientAuth();
 
   if (initializing) {
     return (
-      <View style={{ flex: 1, justifyContent:'center', alignItems:'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator />
       </View>
     );
@@ -22,7 +21,6 @@ const PresentationScreen = () => {
 
   // 👇 si ya hay sesión, no muestres nada más: redirige
   if (isLoggedIn) return <Redirect href="/(tabs)" />;
-
 
   const handleLogin = async () => {
     //await setIsLoggedIn(true);
@@ -34,29 +32,17 @@ const PresentationScreen = () => {
   };
 
   return (
-    <ImageBackground
-      source={require('../assets/images/background.jpg')}
-      style={styles.container}
-      resizeMode="cover"
-    >
+    <ImageBackground source={require("../assets/images/background.jpg")} style={styles.container} resizeMode="cover">
       {/* Degradado sutil para mejorar legibilidad */}
-      <LinearGradient
-        colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.2)']}
-        style={styles.gradient}
-      />
+      <LinearGradient colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.2)"]} style={styles.gradient} />
 
       {/* Logo */}
-      <Image
-        source={require('../assets/images/logo.png')}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+      <Image source={require("../assets/images/logo.png")} style={styles.logo} resizeMode="contain" />
 
-   
       <View style={styles.textContainer}>
         <Text style={styles.title}>Bienvenido a Floosconect</Text>
         <Text style={styles.subtitle}>Elige tu clínica de preferencia, gestiona tus citas y accede a promociones exclusivas.</Text>
-      </View> 
+      </View>
 
       {/* Botones */}
       <View style={styles.buttonsContainer}>
@@ -87,7 +73,7 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   gradient: {
-    ...StyleSheet.absoluteFillObject,
+    //...StyleSheet.absoluteFillObject,
   },
   logo: {
     width: width * 0.2,
